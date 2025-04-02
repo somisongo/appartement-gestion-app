@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -16,20 +16,8 @@ import Home from './pages/Home';
 import ImmeublesList from './pages/immeubles/ImmeublesList';
 import ImmeubleDetails from './pages/immeubles/ImmeubleDetails';
 import ImmeubleForm from './pages/immeubles/ImmeubleForm';
-import AppartementsList from './pages/appartements/AppartementsList';
-import AppartementDetails from './pages/appartements/AppartementDetails';
-import AppartementForm from './pages/appartements/AppartementForm';
-import LocatairesList from './pages/locataires/LocatairesList';
-import LocataireDetails from './pages/locataires/LocataireDetails';
-import LocataireForm from './pages/locataires/LocataireForm';
-import ContratsList from './pages/contrats/ContratsList';
-import ContratDetails from './pages/contrats/ContratDetails';
-import ContratForm from './pages/contrats/ContratForm';
-import PaiementsList from './pages/paiements/PaiementsList';
-import PaiementForm from './pages/paiements/PaiementForm';
-import IncidentsList from './pages/incidents/IncidentsList';
-import IncidentDetails from './pages/incidents/IncidentDetails';
-import IncidentForm from './pages/incidents/IncidentForm';
+
+// NotFound page - créons un composant simple
 import NotFound from './pages/NotFound';
 
 // Composants d'authentification
@@ -78,33 +66,31 @@ function App() {
                 <Route path="immeubles/:id" element={<ImmeubleDetails />} />
                 <Route path="immeubles/:id/edit" element={<ImmeubleForm />} />
                 
-                {/* Routes Appartements */}
+                {/* Les autres routes seront implémentées ultérieurement 
+                
                 <Route path="appartements" element={<AppartementsList />} />
                 <Route path="appartements/new" element={<AppartementForm />} />
                 <Route path="appartements/:id" element={<AppartementDetails />} />
                 <Route path="appartements/:id/edit" element={<AppartementForm />} />
                 
-                {/* Routes Locataires */}
                 <Route path="locataires" element={<LocatairesList />} />
                 <Route path="locataires/new" element={<LocataireForm />} />
                 <Route path="locataires/:id" element={<LocataireDetails />} />
                 <Route path="locataires/:id/edit" element={<LocataireForm />} />
                 
-                {/* Routes Contrats */}
                 <Route path="contrats" element={<ContratsList />} />
                 <Route path="contrats/new" element={<ContratForm />} />
                 <Route path="contrats/:id" element={<ContratDetails />} />
                 <Route path="contrats/:id/edit" element={<ContratForm />} />
                 
-                {/* Routes Paiements */}
                 <Route path="paiements" element={<PaiementsList />} />
                 <Route path="paiements/new" element={<PaiementForm />} />
                 
-                {/* Routes Incidents */}
                 <Route path="incidents" element={<IncidentsList />} />
                 <Route path="incidents/new" element={<IncidentForm />} />
                 <Route path="incidents/:id" element={<IncidentDetails />} />
                 <Route path="incidents/:id/edit" element={<IncidentForm />} />
+                */}
               </Route>
 
               {/* Route 404 */}
