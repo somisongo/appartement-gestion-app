@@ -28,12 +28,15 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Routes - à importer ultérieurement
+// Seule la route immeubles est actuellement implémentée
 app.use('/api/immeubles', require('./routes/immeubles'));
-app.use('/api/appartements', require('./routes/appartements'));
-app.use('/api/locataires', require('./routes/locataires'));
-app.use('/api/contrats', require('./routes/contrats'));
-app.use('/api/paiements', require('./routes/paiements'));
-app.use('/api/incidents', require('./routes/incidents'));
+
+// Les autres routes seront implémentées ultérieurement
+// app.use('/api/appartements', require('./routes/appartements'));
+// app.use('/api/locataires', require('./routes/locataires'));
+// app.use('/api/contrats', require('./routes/contrats'));
+// app.use('/api/paiements', require('./routes/paiements'));
+// app.use('/api/incidents', require('./routes/incidents'));
 
 // Route de base pour vérifier que le serveur fonctionne
 app.get('/', (req, res) => {
