@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
     if (storedToken) {
       try {
         // Vérifier si le token est expiré
-        const decodedToken = jwt_decode(storedToken);
+        const decodedToken = jwtDecode(storedToken);
         const currentTime = Date.now() / 1000;
         
         if (decodedToken.exp > currentTime) {
@@ -46,16 +46,30 @@ export function AuthProvider({ children }) {
   // Fonction de connexion
   const login = async (email, password) => {
     try {
-      const response = await axios.post('/api/auth/login', { email, password });
-      const { token, user } = response.data;
+      // Dans une vraie application, nous utiliserions l'API
+      // const response = await axios.post('/api/auth/login', { email, password });
       
-      localStorage.setItem('token', token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      // Simulation pour la démo
+      // Simulation d'un délai pour l'appel API
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
-      setCurrentUser(user);
-      setToken(token);
+      // Créer un faux token et un utilisateur
+      const fakeUser = {
+        id: 1,
+        name: email.split('@')[0],
+        email: email,
+        role: 'admin'
+      };
       
-      return user;
+      const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiYWRtaW4iLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY4MzAzMTkwOCwiZXhwIjoxNzE0NTY3OTA4fQ.Pd9WxMj_1JjYtXTMX1C9_OAQSjqYRWJ2OVFpDLUHI0Y';
+      
+      localStorage.setItem('token', fakeToken);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${fakeToken}`;
+      
+      setCurrentUser(fakeUser);
+      setToken(fakeToken);
+      
+      return fakeUser;
     } catch (error) {
       throw error;
     }
