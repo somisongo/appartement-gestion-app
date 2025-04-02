@@ -45,28 +45,20 @@ function Login() {
       setError('');
       setLoading(true);
       
-      // En mode démo, nous simulons la connexion
-      // Dans une vraie application, nous utiliserions la fonction login du contexte d'authentification
-      // await login(email, password);
+      // Test d'erreur pour la démo
+      if (email === 'erreur@test.com') {
+        throw new Error('Email ou mot de passe incorrect');
+      }
       
-      // Simulation de la connexion pour la démo
-      setTimeout(() => {
-        // Simulation de l'échec de connexion avec un email spécifique pour tester
-        if (email === 'erreur@test.com') {
-          setError('Email ou mot de passe incorrect');
-          setLoading(false);
-          return;
-        }
-        
-        // Simuler la connexion réussie
-        localStorage.setItem('token', 'fake-token-for-demo');
-        localStorage.setItem('user', JSON.stringify({ name: 'Admin Demo', email }));
-        window.location.href = '/'; // Forcer le rechargement pour que le contexte d'authentification prenne en compte le nouveau token
-      }, 1500); // Délai pour simuler l'appel à l'API
+      // Login via le contexte d'authentification
+      await login(email, password);
+      
+      // Rediriger après la connexion réussie
+      navigate('/');
       
     } catch (error) {
       console.error('Erreur de connexion:', error);
-      setError('Échec de la connexion. Veuillez vérifier vos informations.');
+      setError(error.message || 'Échec de la connexion. Veuillez vérifier vos informations.');
       setLoading(false);
     }
   };
@@ -136,7 +128,11 @@ function Login() {
                 sx={{ mt: 3, mb: 2 }}
                 disabled={loading}
               >
-                {loading ? <CircularProgress size={24} /> : 'Se connecter'}
+                {loading ? (
+                  <CircularProgress size={24} />
+                ) : (
+                  'Se connecter'
+                )}
               </Button>
             </Box>
             
